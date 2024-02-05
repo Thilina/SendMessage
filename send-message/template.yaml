@@ -8,7 +8,7 @@ Description: >
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
-    Timeout: 15
+    Timeout: 21
     MemorySize: 128
 
 Resources:
@@ -18,13 +18,15 @@ Resources:
       CodeUri: send_message/
       Handler: app.lambda_handler
       Runtime: python3.9
-      Events:
-        ApiGatewayEvent:
-          Type: Api
-          Properties:
-            Path: /process-message
-            Method: post
+      
 
+  GetMessageFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: get_message/
+      Handler: app.lambda_handler
+      Runtime: python3.9
+          
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:

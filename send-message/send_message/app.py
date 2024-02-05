@@ -1,13 +1,13 @@
 import json
 import boto3
 from botocore.exceptions import ClientError
-from urllib3.util.ssl_ import DEFAULT_CIPHERS
 
 
 s3_client = boto3.client('s3')
 dynamodb_client = boto3.client('dynamodb')
 
 def lambda_handler(event, context):
+    
     try:
         message = json.loads(event['body'])
 
