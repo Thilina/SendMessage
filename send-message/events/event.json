@@ -1,0 +1,12 @@
+{
+  "metadata":{
+    "message_time":"2023-12-10T22:02:38Z",
+    "company_id":"e0721e56-fb09-4273-ae74-7bcbc92d43eb",
+    "message_id":"fc0daad3-4f10-4d15-b8c6-276cca111e87"
+  },
+    "data":{
+    "order_id":"a929b88e-bc47-4f7d-9584-61c3c94ad2f2",
+    "order_time":"2023-12-10T22:00:00Z",
+    "order_amount":20
+  }
+}

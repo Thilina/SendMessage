@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Send-Message
+
+  Sample SAM Template for send-message
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 15
+    MemorySize: 128
+
+Resources:
+  SendMessageFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: send_message/
+      Handler: app.lambda_handler
+      Runtime: python3.9
+      Events:
+        ApiGatewayEvent:
+          Type: Api
+          Properties:
+            Path: /process-message
+            Method: post
+
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: myawsmessage
+
+  DynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: message_test_table
+      AttributeDefinitions:
+        - AttributeName: message_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: message_id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
